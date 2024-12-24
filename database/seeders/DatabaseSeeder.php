@@ -16,8 +16,6 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
         User::factory()->create([
             'name' => 'user1',
             'email' => 'user1@example.com',
@@ -42,11 +40,11 @@ class DatabaseSeeder extends Seeder
         $messages = Message::whereNull('group_id')->orderBy('created_at')->get();
 
         $conversations = $messages->groupBy(function($message) {
-            return collect([$message->sender_id , $message->reciver_id])->sort()->implode('_');
+            return collect([$message->sender_id , $message->receiver_id])->sort()->implode('_');
         })->map(function ($groupedMessages){
             return [
                 'user_id1' => $groupedMessages -> first()->sender_id,
-                'user_id2' => $groupedMessages ->first() -> reciver_id,
+                'user_id2' => $groupedMessages ->first() -> receiver_id,
                 'last_message_id' => $groupedMessages->last()->id,
                 'created_at' => new Carbon(),
                 'updated_at' => new Carbon()

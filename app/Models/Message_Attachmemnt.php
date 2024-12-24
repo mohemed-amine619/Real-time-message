@@ -15,6 +15,5 @@ class Message_Attachmemnt extends Model
         'path',
         'mime',
         'size',
-        
     ];
 }

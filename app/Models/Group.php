@@ -1,7 +1,6 @@
 <?php
 
 namespace App\Models;
-
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
@@ -21,7 +20,7 @@ class Group extends Model
     ];
     public function users() : BelongsToMany
     {
-        return $this->belognsToMany(User::class , 'group_users');
+        return $this->belongsToMany(User::class , 'group_users');
     }
     public function messages() : HasMany
     {

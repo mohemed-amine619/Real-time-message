@@ -13,6 +13,5 @@ class Conversation extends Model
         'user_id1',
         'user_id2',
         'last_message_id'
-
     ];
 }

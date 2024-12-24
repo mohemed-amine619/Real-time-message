@@ -18,10 +18,10 @@ class MessageFactory extends Factory
     {
         $senderId = $this->faker->randomElement([0, 1]);
         if($senderId === 0){
-            $senderId = $this->faker->randomElement(\App\Models\User::where('sender_id' , '!=' , 1)->pluck('id')->toArray());
-            $reciverId = 1;
+            $senderId = $this->faker->randomElement(\App\Models\User::where('id' , '!=' , 1)->pluck('id')->toArray());
+            $receiverId = 1;
         }else{
-            $reciverId = $this->faker->randomElement(\App\Models\User::pluck('id')->toArray());
+            $receiverId = $this->faker->randomElement(\App\Models\User::pluck('id')->toArray());
         }
 
         $groupId = null;
@@ -30,11 +30,11 @@ class MessageFactory extends Factory
             // select group by group_id
             $group = \App\Models\Group::find($groupId);
             $senderId = $this->faker->randomElement($group->users->pluck('id')->toArray());
-            $reciverId = null;
+            $receiverId = null;
         }
         return [
             'sender_id' => $senderId,
-            'reciver_id' => $reciverId,
+            'receiver_id' => $receiverId,
             'group_id' => $groupId,
             'message' => $this->faker->realText(300),
             'created_at' => $this->faker->dateTimeBetween('-1 year' , 'now'),
